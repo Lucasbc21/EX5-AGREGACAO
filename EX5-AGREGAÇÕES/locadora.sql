@@ -331,7 +331,7 @@ GROUP BY c.num_cadastro, c.nome, l.data_locacao
 --3)
 SELECT DISTINCT c.num_cadastro,
        c.nome,
-	   l.data_locacao,
+	   CONVERT(CHAR(10), l.data_locacao, 103) AS data_locacao,
 	   SUM(l.valor) AS valor_total
 FROM cliente c, locacao l, dvd d
 WHERE c.num_cadastro = l.cliente_num_cadastro
@@ -343,7 +343,7 @@ GROUP BY c.num_cadastro, c.nome, l.data_locacao
 
 SELECT DISTINCT c.num_cadastro,
        c.nome,
-	   c.logradouro + ', ' +CAST(c.num AS VARCHAR(5)) AS Endereço,
+	   c.logradouro + ', ' + CAST(c.num AS VARCHAR(5)) AS Endereço,
 	   CONVERT(CHAR(10), l.data_locacao, 103) AS data_locacao 
 FROM cliente c, locacao l
 WHERE c.num_cadastro = l.cliente_num_cadastro
